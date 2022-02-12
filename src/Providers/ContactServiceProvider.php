@@ -26,5 +26,7 @@ class ContactServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
         }
+
+        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
     }
 }

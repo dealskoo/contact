@@ -19,7 +19,7 @@ class ContactControllerTest extends TestCase
         $email = 'test@test.com';
         $title = 'test title';
         $message = 'test message';
-        $response = $this->post(route('contact'), [
+        $response = $this->post(route('contact.inbox'), [
             'first_name' => $first_name,
             'last_name' => $last_name,
             'email' => $email,
@@ -39,7 +39,7 @@ class ContactControllerTest extends TestCase
         $email = 'test@test.com';
         $title = 'test title';
         $message = 'test message';
-        $response = $this->post(route('contact'), [
+        $response = $this->post(route('contact.inbox'), [
             'first_name' => $first_name,
             'last_name' => $last_name,
             'email' => $email,

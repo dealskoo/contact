@@ -25,6 +25,6 @@ class ContactMail extends Mailable
     {
         return $this->replyTo($this->mail_address, $this->first_name . ' ' . $this->last_name)
             ->subject($this->title)
-            ->markdown('emails.contect', ['message' => $this->message]);
+            ->markdown('contact::emails.contact', ['message' => $this->message]);
     }
 }

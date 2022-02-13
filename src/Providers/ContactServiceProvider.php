@@ -28,5 +28,7 @@ class ContactServiceProvider extends ServiceProvider
         }
 
         $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'contact');
     }
 }

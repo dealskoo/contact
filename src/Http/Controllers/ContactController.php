@@ -2,6 +2,7 @@
 
 namespace Dealskoo\Contact\Http\Controllers;
 
+use Dealskoo\Contact\Events\ContactCreated;
 use Dealskoo\Contact\Mail\ContactMail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -23,6 +24,8 @@ class ContactController extends BaseController
             'title' => ['required'],
             'message' => ['required']
         ]);
+
+        event(new ContactCreated($request->first_name, $request->last_name, $request->email, $request->title, $request->message));
 
         Mail::to(config('mail.reply_to.address'))->send(new ContactMail($request->first_name, $request->last_name, $request->email, $request->title, $request->message));
 

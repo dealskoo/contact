@@ -2,10 +2,12 @@
 
 namespace Dealskoo\Contact\Tests\Feature;
 
+use Dealskoo\Contact\Events\ContactCreated;
 use Dealskoo\Contact\Mail\ContactMail;
 use Dealskoo\Contact\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
 
 class ContactControllerTest extends TestCase
 {
@@ -13,6 +15,7 @@ class ContactControllerTest extends TestCase
 
     public function test_handle()
     {
+        Event::fake();
         Mail::fake();
         $first_name = 'test';
         $last_name = 't';
@@ -29,10 +32,12 @@ class ContactControllerTest extends TestCase
 
         $response->assertStatus(302);
         Mail::assertSent(ContactMail::class);
+        Event::assertDispatched(ContactCreated::class);
     }
 
     public function test_handle_ajax()
     {
+        Event::fake();
         Mail::fake();
         $first_name = 'test';
         $last_name = 't';
@@ -51,5 +56,6 @@ class ContactControllerTest extends TestCase
 
         $response->assertStatus(200);
         Mail::assertSent(ContactMail::class);
+        Event::assertDispatched(ContactCreated::class);
     }
 }

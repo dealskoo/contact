@@ -30,9 +30,9 @@ class ContactController extends BaseController
         Mail::to(config('mail.reply_to.address'))->send(new ContactMail($request->first_name, $request->last_name, $request->email, $request->title, $request->message));
 
         if ($request->ajax()) {
-            return ['success' => __('Thanks contact US!')];
+            return ['success' => __('Thank you contact us!')];
         } else {
-            return back()->with('success', __('Thanks contact US!'));
+            return back()->with('success', __('Thank you contact us!'));
         }
     }
 }
